@@ -1,0 +1,15 @@
+h1 {
+  color: blue;
+}
+
+.button {
+  border: solid 3px black;
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+}
+
+span {
+  font-size: 19px;
+  margin: 0 auto;
+}
