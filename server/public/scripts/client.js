@@ -1,7 +1,14 @@
 $(function(){
   console.log("Client.js is LIVE!");
   //Global Variables
-
+  var numberOne = $("#numberOne").val();
+  var numberTwo = $("#numberTwo").val();
+  var buttonPressed = null;
+  var sendCalc = {
+    firstNum: numberOne,
+    secondNum: numberTwo,
+    button: buttonPressed
+  };
   //inputs
 
   //Buttons
@@ -24,6 +31,14 @@ $(function(){
   //Equals
   $("#equalsButton").on('click', function(){
     console.log("Equals button clicked");
+    $.ajax({
+      type: 'GET',
+      url: 'calculate',
+      data: sendCalc,
+      success: function(response){
+        console.log('calculation Sent! ', reponse);
+      }
+    });
   });
 
   //Functions

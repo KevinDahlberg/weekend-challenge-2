@@ -29,8 +29,10 @@ Finally, build a 'clear' button that resets the whole experience.
   - Buttons to create:
     - Add, Subtract, Multiply, Divide, Equals
  - connect these results to the server side
-  - send on client
-  - receive on server
+  - create object from the two inputs and button pressed
+  - use equals to send object
+    -  send on client
+    - receive on server
  - create function to convert string to numbers
  - create function to perform operation
  - connect the result of the operation to client side
