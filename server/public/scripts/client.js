@@ -55,7 +55,7 @@ $(function(){
       url: 'calculate/data',
       data: calcObject,
       success: function(response){
-        console.log("success!");
+        console.log("back from calc with" + response);
       }
     });
   });
