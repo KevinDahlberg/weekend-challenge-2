@@ -4,6 +4,7 @@ $(function(){
   var buttonPressed;
   var numberOne;
   var numberTwo;
+  var result;
   //inputs
 
   //Buttons
@@ -24,7 +25,7 @@ $(function(){
   //Divide
   $("#divideButton").on('click', function(){
     console.log("Divide button clicked");
-    buttonPressed = "/";
+    buttonPressed = "divide";
     return buttonPressed;
 
   });
@@ -40,27 +41,25 @@ $(function(){
     console.log("Equals button clicked");
     numberOne = $("#numberOne").val();
     numberTwo = $("#numberTwo").val();
-    // you are using a GET statement - maybe you dont need an object???
     console.log(numberOne);
     console.log(numberTwo);
     console.log(buttonPressed);
-    calcObject = {
-      number: numberOne,
-      secondNumber: numberTwo,
-      button: buttonPressed,
-    };
-    console.log(calcObject);
+    //sends variables to server side
     $.ajax({
-      type: 'POST',
-      url: 'calculate/data',
-      data: calcObject,
+      type: 'GET',
+      url: 'calculate/data/' + numberOne + "/" + numberTwo + "/" + buttonPressed + "/",
       success: function(response){
-        console.log("back from calc with" + response);
-      }
+        console.log("back from calc with " + response);
+        result = response;
+        console.log(result);
+        displayResult(result);
+      } // comes back with var result as the result
     });
   });
 
   //Functions
-
+  function displayResult(number){
+    $("#container").append("<p>"+number+"</p>");
+  }
   //called functions
 });

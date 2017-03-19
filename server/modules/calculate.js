@@ -1,19 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var calcObject = {};
-var number = [];
+var result;
 var numberTwo;
 var firstNum;
 var secondNum;
 
 //routes
-router.post('/data', function(req, res){
-  console.log("information = ", req.body);
-  calcObject = req.body;
-  console.log(calcObject);
-  calculate(req.body.number, req.body.secondNumber, req.body.button);
-  console.log("calculated object is: " + number);
-  res.send(number);
+router.get('/data/:number/:secondNumber/:button/', function(req, res){
+  console.log("information = ", req.params);
+  // calcObject = req.params;
+  calculate(req.params.number, req.params.secondNumber, req.params.button);
+  console.log("calculated object is: " + result);
+  res.send(result);
+  // res.send(req.params);
 }); //sends calculation
 
 function convertStringToNum(number, numberTwo){
@@ -27,19 +27,20 @@ function calculate(first, second, third){
   console.log(typeof(firstNum));
   console.log(typeof(secondNum));
   console.log(typeof(third));
-  if (third === '+'){
-    number.result = parseInt(first) + parseInt(second);
-  } else if (third === "-"){
-    number.result = first - second;
-  } else if (third === "*"){
-    number.result = first * second;
-  } else if (third === "/"){
-    number.result = first / second;
+  if (third == '+'){
+    result = parseInt(first) + parseInt(second);
+  } else if (third == "-"){
+    result = first - second;
+  } else if (third == "*"){
+    result = first * second;
+  } else if (third == "divide"){
+    result = first / second;
   } else {
     console.log("ERROR");
   }
-  console.log(number);
-  return(number);
+  console.log(result);
+  result = result.toString();
+  return result;
 }
 //exports
 module.exports = router;

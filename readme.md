@@ -39,6 +39,8 @@ Finally, build a 'clear' button that resets the whole experience.
   - server send
   - client receive
  - display result in DOM
+ - create clear button
+ - build function that clears input fields and DOM
 
 
 
