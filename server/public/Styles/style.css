@@ -13,3 +13,9 @@ span {
   font-size: 19px;
   margin: 0 auto;
 }
+
+#numberInput {
+  border: solid 3px black;
+  height: 40px;
+  width: 200px;
+}
