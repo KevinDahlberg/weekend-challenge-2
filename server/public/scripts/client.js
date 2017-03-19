@@ -2,66 +2,65 @@ $(function(){
   console.log("Client.js is LIVE!");
   //Global Variables
   var buttonPressed;
-  var sendCalc
+  var numberOne;
+  var numberTwo;
   //inputs
 
   //Buttons
   //add
   $("#addButton").on('click', function(){
     console.log("Add button clicked");
-    buttonPushed($(this));
+    buttonPressed = "+";
     return buttonPressed;
 
   });
   //Subtract
   $("#subtractButton").on('click', function(){
     console.log("Subtract button clicked");
-    buttonPushed($(this));
+    buttonPressed = "-";
     return buttonPressed;
 
   });
   //Divide
   $("#divideButton").on('click', function(){
     console.log("Divide button clicked");
-    buttonPushed($(this));
+    buttonPressed = "/";
     return buttonPressed;
 
   });
   //Multiply
   $("#multiplyButton").on('click', function(){
     console.log("Multiply button clicked");
-    buttonPushed($(this));
+    buttonPressed = "*";
     return buttonPressed;
 
   });
   //Equals
   $("#equalsButton").on('click', function(){
     console.log("Equals button clicked");
-    var numberOne = $("#numberOne").val();
-    var numberTwo = $("#numberTwo").val();
+    numberOne = $("#numberOne").val();
+    numberTwo = $("#numberTwo").val();
     // you are using a GET statement - maybe you dont need an object???
-    var sendCalc = {
-      firstNum: numberOne,
-      secondNum: numberTwo,
-      button: buttonPressed
+    console.log(numberOne);
+    console.log(numberTwo);
+    console.log(buttonPressed);
+    calcObject = {
+      number: numberOne,
+      secondNumber: numberTwo,
+      button: buttonPressed,
     };
-    console.log(sendCalc);
+    console.log(calcObject);
     $.ajax({
-      type: 'GET',
-      url: 'calculate',
-      data: sendCalc,
+      type: 'POST',
+      url: 'calculate/data',
+      data: calcObject,
       success: function(response){
-        console.log('calculation Sent! ', reponse);
+        console.log("success!");
       }
     });
   });
 
   //Functions
-  function buttonPushed(button){
-    buttonPressed = button;
-    //console.log(buttonPressed);
-    return buttonPressed;
-  }
+
   //called functions
-  console.log(buttonPressed);
 });

@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended: true})); //makes bodyParser available
 app.use('/', index); //accesses index for home package
 app.use('/calculate', calculate); //accesses calculate folder
 
+
 //listening
 app.listen(port, function(){
   console.log("Listening to: ", port);
