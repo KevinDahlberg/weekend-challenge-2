@@ -38,32 +38,8 @@ $(function(){
     buttonPressed = "*";
     numberGet();
     return buttonPressed;
-
   });
-  //Equals
-  $("#equalsButton").on('click', function(){
-    console.log("Equals button clicked");
-    numberTwo = $(".input").children().text();
-    $(".input").children().empty();
-    $("#numberInput").append("<span>Computing</span>");
-    // numberOne = $("#numberOne").val();
-    // numberTwo = $("#numberTwo").val();
-    console.log(numberOne);
-    console.log(numberTwo);
-    console.log(buttonPressed);
-    //sends variables to server side
-    $.ajax({
-      type: 'GET',
-      url: 'calculate/data/' + numberOne + "/" + numberTwo + "/" + buttonPressed + "/",
-      success: function(response){
-        console.log("back from calc with " + response);
-        // $(".input").children().empty();
-        result = response;
-        console.log(result);
-        displayResult(result);
-      }
-      }); // comes back with var result as the result
-    });
+
   //clear button
   $("#clearButton").on('click', function(){
     console.log("Clear button clicked");
@@ -132,26 +108,52 @@ $(function(){
     console.log("Nine button clicked");
   });
 
-  //Functions
-  function displayResult(number){
-    $(".input").children().show().delay(3000).empty();
-    $("#numberInput").append("<span>"+number+"</span>");
-  }
+  //Equals
+  $("#equalsButton").on('click', function(){
+    console.log("Equals button clicked");
+    numberGetTwo();
+    console.log(numberOne);
+    console.log(numberTwo);
+    console.log(buttonPressed);
+    //sends variables to server side
+    $.ajax({
+      type: 'GET',
+      url: 'calculate/data/' + numberOne + "/" + numberTwo + "/" + buttonPressed + "/",
+      success: function(response){
+        console.log("back from calc with " + response);
+        // $(".input").children().empty();
+        result = response;
+        console.log(result);
+        $("#numberInput").append("<span>Computing</span>");
+        setTimeout(function (){
+          $("#numberInput").empty().append("<span>"+result+"</span>");
+        }, 3000);
+        // displayResult(result);
+      }
+      }); // comes back with var result as the result
+    });
 
+  //Functions
+
+  //function to save first number input into calculator
   function numberGet(){
-    //   if (numberOne != typeof(number)){
-    //   numberOne = $(".input").children().text();
-    //   console.log(numberOne);
-    //   return numberOne;
-    // } else {
-    //   numberTwo = $(".input").children().text();
-    //   console.log(numberTwo);
-    //   return numberTwo;
-    // }
     numberOne = $(".input").children().text();
     $(".input").children().empty();
     console.log(numberOne);
   }
+
+  //function to save second number input into calculator
+  function numberGetTwo(){
+    numberTwo = $(".input").children().text();
+    $(".input").children().empty();
+    console.log(numberTwo);
+  }
+
+  //function to display the result from the back end
+  function displayResult(number){
+    $("#numberInput").empty().append("<span>"+number+"</span>");
+  }
+
   //called functions
 
 
