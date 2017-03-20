@@ -7,6 +7,16 @@ h1 {
   height: 20px;
   width: 20px;
   margin: 5px;
+  margin-left: 10px;
+  padding-left: 10px;
+  background-color: lightgrey;
+}
+
+#container {
+  height: 200px;
+  width: 250px;
+  border: solid 3px black;
+  background-color: darkgrey;
 }
 
 span {
@@ -18,4 +28,18 @@ span {
   border: solid 3px black;
   height: 40px;
   width: 200px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: lightgrey;
+}
+
+.grid {
+  width: 200px;
+  margin-left: 20px;
+}
+
+[class*='col-'] {
+  width: 50px;
+  float: left;
 }
