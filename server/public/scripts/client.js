@@ -7,7 +7,52 @@ $(function(){
   var result;
   //inputs
 
-  //Buttons
+  //Equals button.  Takes in numbers, sends them off to back end,
+  //receives them, and displays result.
+  $("#equalsButton").on('click', function(){
+    console.log("Equals button clicked");
+    numberGetTwo();
+    console.log(numberOne);
+    console.log(numberTwo);
+    console.log(buttonPressed);
+    //sends variables to server side
+    $.ajax({
+      type: 'GET',
+      url: 'calculate/data/' + numberOne + "/" + numberTwo + "/" + buttonPressed + "/",
+      success: function(response){
+        console.log("back from calc with " + response);
+        // $(".input").children().empty();
+        result = response;
+        console.log(result);
+        $("#numberInput").append("<span>Computing</span>");
+        setTimeout(function (){
+          $("#numberInput").empty().append("<span>"+result+"</span>");
+        }, 3000);
+      }
+      }); // comes back with var result as the result
+    });
+
+  //Functions:
+  //function to save first number input into calculator
+  function numberGet(){
+    numberOne = $(".input").children().text();
+    $(".input").children().empty();
+    console.log(numberOne);
+  }
+
+  //function to save second number input into calculator
+  function numberGetTwo(){
+    numberTwo = $(".input").children().text();
+    $(".input").children().empty();
+    console.log(numberTwo);
+  }
+
+  //function to display the result from the back end
+  function displayResult(number){
+    $("#numberInput").empty().append("<span>"+number+"</span>");
+  }
+
+  //other Buttons
   //add
   $("#addButton").on('click', function(){
     console.log("Add button clicked");
@@ -107,54 +152,6 @@ $(function(){
     $("#numberInput").append("<span>9</span>");
     console.log("Nine button clicked");
   });
-
-  //Equals
-  $("#equalsButton").on('click', function(){
-    console.log("Equals button clicked");
-    numberGetTwo();
-    console.log(numberOne);
-    console.log(numberTwo);
-    console.log(buttonPressed);
-    //sends variables to server side
-    $.ajax({
-      type: 'GET',
-      url: 'calculate/data/' + numberOne + "/" + numberTwo + "/" + buttonPressed + "/",
-      success: function(response){
-        console.log("back from calc with " + response);
-        // $(".input").children().empty();
-        result = response;
-        console.log(result);
-        $("#numberInput").append("<span>Computing</span>");
-        setTimeout(function (){
-          $("#numberInput").empty().append("<span>"+result+"</span>");
-        }, 3000);
-        // displayResult(result);
-      }
-      }); // comes back with var result as the result
-    });
-
-  //Functions
-
-  //function to save first number input into calculator
-  function numberGet(){
-    numberOne = $(".input").children().text();
-    $(".input").children().empty();
-    console.log(numberOne);
-  }
-
-  //function to save second number input into calculator
-  function numberGetTwo(){
-    numberTwo = $(".input").children().text();
-    $(".input").children().empty();
-    console.log(numberTwo);
-  }
-
-  //function to display the result from the back end
-  function displayResult(number){
-    $("#numberInput").empty().append("<span>"+number+"</span>");
-  }
-
-  //called functions
 
 
 });

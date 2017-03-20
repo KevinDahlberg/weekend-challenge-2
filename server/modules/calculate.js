@@ -13,15 +13,17 @@ router.get('/data/:number/:secondNumber/:button/', function(req, res){
   calculate(req.params.number, req.params.secondNumber, req.params.button);
   console.log("calculated object is: " + result);
   res.send(result);
-  // res.send(req.params);
 }); //sends calculation
 
+//Functions
+//converts the strings from the object to numbers
 function convertStringToNum(number, numberTwo){
   firstNum = parseInt(number);
   secondNum = parseInt(numberTwo);
   return firstNum, secondNum;
 }
 
+//function to calculate the result
 function calculate(first, second, third){
   convertStringToNum(first, second);
   console.log(typeof(firstNum));
@@ -42,5 +44,6 @@ function calculate(first, second, third){
   result = result.toString();
   return result;
 }
+
 //exports
 module.exports = router;
